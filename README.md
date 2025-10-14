@@ -3,6 +3,10 @@
 ## Instalar 
 pip install pandas duckdb matplotlib scikit-learn
 
+## Informações 
+https://sidra.ibge.gov.br/tabela/1612
+https://dados.gov.br/dados/conjuntos-dados/pa-producao-agricola-municipal
+
 Os 16 preditores criados e disponíveis para modelagem no arquivo tabela1612_features.csv são:
 - ano: O ano da observação.
 - valor_total_uf: O valor total da produção agrícola para a Unidade da Federação (UF) naquele ano.
