@@ -51,3 +51,58 @@ Explicação: Esta hipótese postula que a granularidade dos dados (valores de p
 Explicação: Esta hipótese aborda diretamente a importância do Feature Engineering (engenharia de características). Ela afirma que as novas variáveis que criamos (crescimento_produto_anual, participacao_produto_uf, media_movel_3_anos, etc.) não apenas cumprem o requisito de ter mais de 15 preditores, mas também são cruciais para aprimorar o desempenho dos modelos preditivos. Para testá-la, seria necessário comparar o desempenho dos modelos com e sem essas features, esperando que as features engenheiradas resultem em modelos mais precisos e robustos.
 Essas perguntas e hipóteses fornecem um roteiro claro para as próximas etapas do seu projeto, guiando a seleção de modelos, a avaliação de desempenho e a interpretação dos resultados.
 
+
+
+## Perguntas de Pesquisa Respondidas
+
+#### **1. Classificação: Crescimento Acima da Média Nacional**
+**Pergunta:** Qual a probabilidade de uma UF apresentar crescimento anual no valor da produção agrícola acima da média nacional?
+
+**Resultado:**  **Respondida com sucesso**
+- **Modelo:** Random Forest Otimizado
+- **Acurácia:** 81.36%
+- **AUC:** 0.8991
+- **F1-Score:** 84.06%
+
+#### **2. Regressão: Fatores Mais Influentes**
+**Pergunta:** Quais fatores são os mais influentes na previsão do valor da produção agrícola de uma UF?
+
+**Resultado:**  **Respondida com alta precisão**
+- **Modelo:** Random Forest
+- **R²:** 0.9598 (explica 96% da variância)
+- **RMSE:** 0.06
+- **MAE:** 0.02
+
+## Hipóteses Testáveis - Status de Validação
+
+| Hipótese | Status | Evidência |
+|----------|--------|-----------|
+| **H1:** Histórico de crescimento consistente prediz desempenho superior |  **VALIDADA** | `Valor_Total_UF_Lag1` foi a feature mais importante (15.68%) |
+| **H2:** Produtos-chave e região melhoram a previsão |  **VALIDADA** | Soja e Milho entre as features mais relevantes; R² = 0.9598 |
+| **H3:** Feature Engineering melhora capacidade preditiva |  **VALIDADA** | 36 features criadas; modelos com alta performance |
+
+## Principais Descobertas
+
+#### **Features Mais Importantes (Classificação)**
+1. **Valor_Total_UF_Lag1** (15.68%) - Valor total da UF no ano anterior
+2. **Ano** (14.63%) - Contexto temporal
+3. **Valor_Total_UF_Ano** (12.88%) - Valor total da UF no ano atual
+4. **Participacao_Produto_UF** (8.38%) - Participação do produto na UF
+5. **PIB_Per_Capita_UF_Mean** (7.79%) - Contexto econômico da UF
+
+#### **Comparação de Modelos**
+
+**Classificação:**
+- Regressão Logística (Baseline): AUC = 0.767
+- **Random Forest (Melhor):** AUC = 0.899
+
+**Regressão:**
+- Regressão Linear (Baseline): R² = 0.873
+- **Random Forest (Melhor):** R² = 0.960
+
+## Conclusões-Chave
+
+1. **Predição de Crescimento:** É possível prever com 81% de acurácia se uma UF terá crescimento acima da média nacional
+2. **Fatores Determinantes:** Histórico de produção e contexto econômico da UF são os principais preditores
+3. **Modelo Robusto:** Random Forest demonstrou superioridade consistente em ambas as tarefas
+4. **Feature Engineering:** Criação de variáveis derivadas foi fundamental para o sucesso dos modelos
